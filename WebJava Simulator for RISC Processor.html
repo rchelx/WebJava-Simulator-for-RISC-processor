@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=UTF-8>
+    <title>Simulator for RISC Processor</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="parser.js" type="text/javascript"></script>
+    <script src="softarm.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>Simulator for RISC Processor</h2>
+        </div>
+                
+
+        <div class="formdiv" id="armcode">
+            <div class="panel-body-code">
+                <div class="control-buttons">
+                    <button class="button" id="runButton">Run</button>
+                    <button class="button" id="stepButton">Step</button>
+                    <button class="button" id="resetButton">Reset</button>
+                </div>
+                
+                <textarea name="program" id="program" form="decoder" style="font-size: 11pt" wrap = 'off'></textarea>
+
+                <input type="checkbox" id="pipelineCheckBox" name="pipelineCheckBox">
+                <label for="pipeline" id="pipelinelabel"> Pipelined</label>
+    
+                <label for="datahazardlabel" id="datahazardlabel">Data Hazard Handling:</label>
+                <select id="selectdatahazard">
+                    <option value="dataForwarding">Data Forwarding</option>
+                    <option value="decodeWB">Decode &amp; Write Back</option>
+                    <option value="noCounterMeasure">No Countermeasure</option>
+                </select>
+                <label for="controlhazardlabel" id="controlhazardlabel">Control Hazard Handling:</label>
+                <select id="selectcontrolhazard">
+                    <option value="decodeID">Decode</option>
+                    <option value="executeEX">Execute</option>
+                    <option value="memoryME">Memory</option>
+                </select>
+                
+                
+                <pre id="log">EXCEPTION:</pre>
+            </div>
+        </div>
+        
+        <div class="panel panel-info" id="memoryregister">
+            <table id="regtable">
+                <tr><th>Registers</th><th>Value</th></tr>
+                <tr id="r0row"><td class="regName">R0</td><td id="r0val"></td></tr>
+                <tr id="r1row"><td class="regName">R1</td><td id="r1val"></td></tr>
+                <tr id="r2row"><td class="regName">R2</td><td id="r2val"></td></tr>
+                <tr id="r3row"><td class="regName">R3</td><td id="r3val"></td></tr>
+                <tr id="r4row"><td class="regName">R4</td><td id="r4val"></td></tr>
+                <tr id="r5row"><td class="regName">R5</td><td id="r5val"></td></tr>
+                <tr id="r6row"><td class="regName">R6</td><td id="r6val"></td></tr>
+                <tr id="r7row"><td class="regName">R7</td><td id="r7val"></td></tr>
+                <tr id="r8row"><td class="regName">R8</td><td id="r8val"></td></tr>
+                <tr id="r9row"><td class="regName">R9</td><td id="r9val"></td></tr>
+                <tr id="r10row"><td class="regName">R10</td><td id="r10val"></td></tr>
+                <tr id="r11row"><td class="regName">R11</td><td id="r11val"></td></tr>
+                <tr id="r12row"><td class="regName">R12</td><td id="r12val"></td></tr>
+                <tr id="r13row"><td class="regName">R13 (SP)</td><td id="r13val"></td></tr>
+                <tr id="r14row"><td class="regName">R14 (LR)</td><td id="r14val"></td></tr>
+                <tr id="r15row"><td class="regName">R15 (PC)</td><td id="r15val"></td></tr>
+                <tr id="cpsrrow"><td class="regName">CPSR</td><td id="cpsrval"></td></tr>
+            </table>
+        </div>
+
+        <div class="panel panel-info" id="memorytable">
+            <table id="memtable">
+                <tbody><tr>
+                    <th>Address</th>
+                    <th>0x00</th>
+                    <th>0x04</th>
+                    <th>0x08</th>
+                    <th>0x0c</th>
+                    <th>0x10</th>
+                    <th>0x14</th>
+                    <th>0x18</th>
+                    <th>0x1c</th>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="panel panel-results" id="results">
+            <div class="results-heading">RESULTS</div>
+            <p id="noOfCycles" style="display:none">No. of cycles: </p>
+            <p id="noOfInstr" style="display:none">No. of instructions: <span id="noOfInstrCount"></span></p>
+            <p id="noOfStalls" style="display:none">No. of Stalls: <span id="noOfStallsCount">0</span></p>
+            <p id="noOfIterations" style="display:none">No. of Iterations: </p>
+            <p id="steadyStateCPI" style="display:none">Steady State CPI: </p>
+        </div>
+
+
+        <div class="panel panel-success" id="cycles">
+            <div class="panel-body" id="cyclesdiv">
+                <label for="instrorderlabel" id="instrorderlabel"> Instr. <br> Order</label>
+                <div class="clockcyclelabel1"id="clockcyclelabel"> Clock Cycle</label></div>
+                <div class="instrorderno" id="displayInstrOrder"></div>
+                <div class="clockcycleno" id="displayClockCycle"></div>
+                <div class="clockcycles" id="clockCycles"></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</body>
+
+</html>
+
+    
