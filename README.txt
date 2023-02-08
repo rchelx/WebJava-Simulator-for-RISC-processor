@@ -1,4 +1,7 @@
-1. To test the application, open the HTML file - WebJava Simulator for RISC Processor.html on browser 
+To test the application:
+1. Download the entire repository
+2. Open the HTML file - WebJava Simulator for RISC Processor.html on browser
+
 
 
 Test instructions: 
