@@ -5,6 +5,7 @@ body {
   overflow-y: hidden;
   overflow-x: scroll;
   background: #bfd8d2;
+  user-select: text; 
 }
 
 #header {

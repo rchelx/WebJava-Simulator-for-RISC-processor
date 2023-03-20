@@ -90,7 +90,7 @@ function createVm(vmconf) {
 
             while (i < ops.length) {
                 if (lines[i] !== undefined) {
-                    lines[i] = lines[i] + ' - ' + '[I' + total + ']';
+                    lines[i] = lines[i] + ' - ' + '[I' + (total-1) + ']';
                     document.getElementById("program").value = lines.join("\n");
                 }
                 
@@ -185,7 +185,7 @@ function createVm(vmconf) {
                 }
                 else {
                     if (lines[i] !== undefined) {
-                        lines[i] = lines[i] + ' - ' + '[I' + total + ']';
+                        lines[i] = lines[i] + ' - ' + '[I' + (total-1) + ']';
                         document.getElementById("program").value = lines.join("\n");
                         totalnum = total;
                         instrcountnum.textContent = total;
@@ -541,6 +541,7 @@ function printinfo() {
         textnoOfCycles.style.display = "block";
         textnoOfIterations.style.display = "none";
         textnoOfIterations.textContent = "No. of Iterations: " + (count);
+        textsteadyStateCPI.textContent = "Steady State CPI: " + cpi;
 
         if ((count - 2) > 0) {
             instrcountnum.textContent = totalnum;
@@ -548,6 +549,7 @@ function printinfo() {
             cpi = (totalcycles / totalnum);
             textnoOfCycles.textContent = "No. of cycles: " + (totalnum * cpi);
             textnoOfIterations.textContent = "No. of Iterations: " + count;
+            textsteadyStateCPI.textContent = "Steady State CPI: " + ((totalnum + (stallcount + 1)) / totalnum);
         }
     }
 }
@@ -639,7 +641,7 @@ function runProgram(vm) {
             }
 
             document.getElementById("displayInstrOrder").innerHTML = '';
-            for (var i = 1; i < totalnum + 1; i++) {
+            for (var i = 0; i < totalnum; i++) {
                 document.getElementById("displayInstrOrder").innerHTML += String ("I" + i) + "<br>";
             }
 
